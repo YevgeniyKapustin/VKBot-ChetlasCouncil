@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "vkbot-chetlascouncil"
+version = "0.1.0"
+description = ""
+authors = ["Yevgeniy Kap <kapustaevg@gmail.com>"]
+readme = "README.md"
+packages = [{include = "vkbot_chetlascouncil"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+setuptools = "^69.0.2"
+loguru = "^0.7.2"
+vk-api = "^11.9.9"
+pydantic-settings = "^2.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
