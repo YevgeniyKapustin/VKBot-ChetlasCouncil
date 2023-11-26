@@ -11,5 +11,6 @@ def extract_msg_from_event(event: VkBotMessageEvent) -> Message:
 
     """
     message = Message.model_validate(event.object.message)
-    message.text = message.text.lower()
-    return message[1:]
+    message.chat_id = event.chat_id
+    message.text = message.text.lower()[1:]
+    return message

@@ -3,6 +3,7 @@ from vk_api.bot_longpoll import VkBotEventType
 
 from src import config
 from src.services import vk, commands
+from src.services.poll import Poll
 from src.services.schemas import Message
 from src.utils.message import extract_msg_from_event
 
@@ -27,11 +28,12 @@ class Bot(object):
     def __run():
         for event in vk.get_longpoll().listen():
             logger.debug(f'catch {event}')
-            if event.type == VkBotEventType.MESSAGE_NEW and event.from_chat:
+            if (
+                    event.type == VkBotEventType.MESSAGE_NEW and
+                    event.from_chat and
+                    event.object.message.get('text')[0] == config.PREFIX and
+                    event.chat_id == config.CHAT_ID
+            ):
                 message: Message = extract_msg_from_event(event)
-                if (
-                        config.PEER_ID == message.peer_id and
-                        message.text[0] == config.PREFIX
-                ):
-                    for command in commands:
-                        ...
+                # for command in commands:
+                Poll(message.text).create()

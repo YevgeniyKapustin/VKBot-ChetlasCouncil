@@ -5,11 +5,11 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     """Конфигурация бота."""
     COMMUNITY_TOKEN: str  # Токен от сообщества, который будет использовать бот
-    #  ADMIN_TOKEN: str   # Токен юзера, который нужен для некоторых запросов
+    ADMIN_TOKEN: str      # Токен юзера, который нужен для некоторых запросов
     GROUP_ID: int         # ID сообщества в ВК
     DEBUG: bool           # Режим дебага
     PREFIX: str
-    PEER_ID: int
+    CHAT_ID: int
 
     class Config:
         """Настройка файла .env."""
